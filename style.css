@@ -23,6 +23,8 @@ body { margin: 0; background: var(--bg); color: var(--ink); font: 400 17px/1.6 v
 img { max-width: 100%; }
 a { color: var(--brand-hi); text-decoration: none; }
 a:hover { color: #fff; }
+.tg { color: var(--brand-hi); }   /* the name, wherever it appears in text */
+.lead .tg, .abstract .tg, .sub .tg { font-weight: 600; }
 :focus-visible { outline: 2px solid var(--brand-hi); outline-offset: 3px; border-radius: 6px; }
 .blue { --c: var(--blue); --t: var(--blue-t); }
 .green { --c: var(--green); --t: var(--green-t); }
@@ -96,7 +98,8 @@ h3 { font: 700 21px/1.25 var(--display); margin: 0 0 8px; }
 .video-note { text-align: center; color: var(--muted); font-size: 14px; margin: 14px 0 0; }
 
 /* ---------- idea ---------- */
-.statement { font-size: clamp(40px, 6.6vw, 82px); line-height: 1.02; margin-bottom: 30px; }
+.statement { font-size: clamp(34px, 5.4vw, 70px); line-height: 1.04; margin-bottom: 30px;
+  width: min(1180px, calc(100vw - 32px)); position: relative; left: 50%; transform: translateX(-50%); }  /* wider than its column */
 .statement em { font-style: normal; color: var(--brand-hi); }
 .abstract { border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); padding: 4px 24px; }
 .abstract summary { cursor: pointer; padding: 14px 0; font-weight: 600; color: var(--brand-hi); }
@@ -156,7 +159,7 @@ input[type=range] { width: 100%; accent-color: var(--brand-glow); }
 .pillars { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; margin-top: 30px; }
 .temple { position: relative; aspect-ratio: 320 / 246; }
 .temple img { width: 100%; height: 100%; display: block; }
-.temple .roof { position: absolute; left: 0; right: 0; top: 11.2%; text-align: center; font: 800 clamp(20px, 3vw, 34px)/1 var(--display); pointer-events: none; }
+.temple .roof { position: absolute; left: 0; right: 0; top: 11.2%; text-align: center; font: 800 clamp(20px, 3vw, 34px)/1 var(--display); color: #f0deec; pointer-events: none; }
 .col-hit { position: absolute; top: 24.4%; height: 67.9%; background: transparent; border: 0; padding: 0; cursor: pointer; transition: background .25s; border-radius: 10px; }
 .col-hit.p0 { left: 5%; width: 19.4%; }
 .col-hit.p1 { left: 40.3%; width: 19.1%; }
@@ -228,7 +231,7 @@ figcaption b { color: var(--ink); font-weight: 600; }
 @media (max-width: 560px) {
   h1 { font-size: 27px; }
   h1 br { display: none; }
-  .statement { font-size: 36px; }
+  .statement { font-size: 32px; }
   .section { padding: 80px 16px; }
   .lab-flow { grid-template-columns: 1fr; }
   .lab-link { display: none; }

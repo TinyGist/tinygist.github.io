@@ -91,28 +91,28 @@
 <section class="section idea" id="idea">
   <div class="wrap narrow">
     <p class="kicker">The Idea</p>
-    <h2 class="statement">Don't share the model.<br><em>Share the gist.</em></h2>
+    <h2 class="statement">Don't share the entire model.<br><em>Share the gist.</em></h2>
     <p class="lead">
       Tiny devices sit on data that is private and keeps changing, so it should stay where it is. Decentralized
       federated learning lets them train together with no server in the loop, yet trading the whole model with
-      every neighbor, round after round, overwhelms a few hundred kilobytes of memory and a slow, lossy radio.
-      tinyGist sends only the part that matters most.
+      every neighbor, round after round, overwhelms a few hundred kilobytes of memory and a slow, lossy wireless link.
+      <span class="tg">tinyGist</span> sends only the part that matters most.
     </p>
     <details class="abstract">
       <summary>Abstract</summary>
       <p>
-        We present tinyGist, an efficient decentralized federated learning framework designed for tiny
+        We present <span class="tg">tinyGist</span>, an efficient decentralized federated learning framework designed for tiny
         microcontrollers. Instead of treating all model parameters equally, each device exchanges a portion of
         them, effectively sharing a "gist" of the information. Our major contributions are: (1) segment model
         parameters based on their importance, while identifying the most impactful updates, (2) share the gist
         probabilistically, maintaining model diversity while ensuring fast knowledge propagation across peers,
         (3) update models based on the information merit received from other neighbors, and (4) adaptive
-        learning. We implement tinyGist across various simulation experiments, large-scale realistic emulation
+        learning. We implement <span class="tg">tinyGist</span> across various simulation experiments, large-scale realistic emulation
         with hundreds of devices, and real deployment on homogeneous and heterogeneous physical microcontroller
-        clusters. Evaluated on eight machine learning models and 15 tasks, tinyGist outperforms existing
+        clusters. Evaluated on eight machine learning models and 15 tasks, <span class="tg">tinyGist</span> outperforms existing
         baselines in convergence speed by 1.35-3.3× and accuracy by up to 17%, while reducing communication
         overhead by ≈3× compared to the full-model baselines. We further validate our lightweight importance
-        proxy against gradient-, Fisher-, and Hessian-based measures, and characterize how tinyGist interacts
+        proxy against gradient-, Fisher-, and Hessian-based measures, and characterize how <span class="tg">tinyGist</span> interacts
         with differential privacy and secure aggregation.
       </p>
     </details>
@@ -124,7 +124,7 @@
   <div class="wrap">
     <p class="kicker">Gist Lab</p>
     <h2>Play with a Gist</h2>
-    <p class="sub">One tinyGist round on a toy model with 160 parameters: split the model by importance, send a few segments to random peers, and watch the peers aggregate once enough gists have arrived.</p>
+    <p class="sub">One <span class="tg">tinyGist</span> round on a toy model with 160 parameters: split the model by importance, send a few segments to random peers, and watch the peers aggregate once enough gists have arrived.</p>
 
     <div class="lab">
       <div class="lab-stage">
@@ -232,7 +232,7 @@
       <figure>
         <div class="legend">
           <span><i style="background:#78866b"></i>Centralized</span><span><i style="background:#1c39bb"></i>DFA</span>
-          <span><i style="background:#c03aae"></i>tinyGist</span><span><i style="background:#00a693"></i>SDFA</span>
+          <span><i style="background:#c03aae"></i><span class="tg">tinyGist</span></span><span><i style="background:#00a693"></i>SDFA</span>
           <span><i style="background:#f38400"></i>SP</span>
         </div>
         <img src="assets/fig/mnv2-cifar10-dark.svg" alt="Accuracy over 200 rounds for MobileNetV2 on CIFAR-10; tinyGist tracks the centralized upper line and beats decentralized baselines" loading="lazy">
@@ -289,7 +289,7 @@ docker run -it --name tinygist ghcr.io/tinygist/tinygist-artifact-mobicom26:late
 <section class="section" id="cite">
   <div class="wrap narrow">
     <p class="kicker">Citation</p>
-    <h2>Cite tinyGist</h2>
+    <h2>Cite <span class="tg">tinyGist</span></h2>
     <div class="tabs" role="tablist">
       <button role="tab" aria-selected="true" data-tab="bib">BibTeX</button>
       <button role="tab" aria-selected="false" data-tab="acm">ACM Reference</button>
@@ -307,13 +307,43 @@ docker run -it --name tinygist ghcr.io/tinygist/tinygist-artifact-mobicom26:late
   address   = {New York, NY, USA},
   isbn      = {9798400725050},
   doi       = {10.1145/3795866.3844490}
+}
+
+@inproceedings{asadi2025gist,
+  author    = {Asadi, Navidreza and Beng{\"u}, Halil Ibrahim and Wulfert, Lars and W{\"o}hrle, Hendrik and Kellerer, Wolfgang},
+  title     = {{Gist} - Optimizing Segmentation for Decentralized Federated Learning on Tiny Devices},
+  booktitle = {Proceedings of the Federated Learning and Edge AI for Privacy and Mobility},
+  series    = {FLEdge-AI '25},
+  year      = {2025},
+  pages     = {77--84},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  isbn      = {9798400719769},
+  doi       = {10.1145/3737899.3768527}
+}
+
+@inproceedings{asadi2025zwe3,
+  author    = {Asadi, Navidreza and Beng{\"u}, Halil Ibrahim and Wulfert, Lars and W{\"o}hrle, Hendrik and Kellerer, Wolfgang},
+  title     = {Road to Tiny Reality: Digital Twins for Decentralized {AI} on Microcontrollers},
+  booktitle = {Proceedings of the 31st Annual International Conference on Mobile Computing and Networking},
+  series    = {MobiCom '25},
+  year      = {2025},
+  pages     = {1305--1307},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  doi       = {10.1145/3680207.3765668}
 }</code></pre>
       <button class="copy" data-copy="bibtex">Copy</button>
     </div>
     <div class="code" data-panel="acm" hidden>
-      <pre id="acmref" class="wrap-text"><code>Navidreza Asadi, Lars Wulfert, Chi Xia, Halil Ibrahim Bengü, Hendrik Wöhrle, and Wolfgang Kellerer. 2026. Adaptive Segmented Decentralized Federated Learning on Tiny Devices. In The 32nd Annual International Conference on Mobile Computing and Networking (MobiCom '26), October 26–30, 2026, Austin, TX, USA. ACM, New York, NY, USA. https://doi.org/10.1145/3795866.3844490</code></pre>
+      <pre id="acmref" class="wrap-text"><code>Navidreza Asadi, Lars Wulfert, Chi Xia, Halil Ibrahim Bengü, Hendrik Wöhrle, and Wolfgang Kellerer. 2026. Adaptive Segmented Decentralized Federated Learning on Tiny Devices. In The 32nd Annual International Conference on Mobile Computing and Networking (MobiCom '26), October 26–30, 2026, Austin, TX, USA. ACM, New York, NY, USA. https://doi.org/10.1145/3795866.3844490
+
+Navidreza Asadi, Halil Ibrahim Bengü, Lars Wulfert, Hendrik Wöhrle, and Wolfgang Kellerer. 2025. Gist - Optimizing Segmentation for Decentralized Federated Learning on Tiny Devices. In Proceedings of the Federated Learning and Edge AI for Privacy and Mobility (FLEdge-AI '25). ACM, New York, NY, USA, 77–84. https://doi.org/10.1145/3737899.3768527
+
+Navidreza Asadi, Halil Ibrahim Bengü, Lars Wulfert, Hendrik Wöhrle, and Wolfgang Kellerer. 2025. Road to Tiny Reality: Digital Twins for Decentralized AI on Microcontrollers. In Proceedings of the 31st Annual International Conference on Mobile Computing and Networking (MobiCom '25). ACM, New York, NY, USA, 1305–1307. https://doi.org/10.1145/3680207.3765668</code></pre>
       <button class="copy" data-copy="acmref">Copy</button>
     </div>
+
   </div>
 </section>
 
