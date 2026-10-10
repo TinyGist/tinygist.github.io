@@ -1,0 +1,12 @@
+# macOS / Windows file-browser litter
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local preview / test pages
+_test*.html

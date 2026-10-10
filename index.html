@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>tinyGist - Adaptive Segmented Decentralized Federated Learning on Tiny Devices</title>
+<meta name="description" content="tinyGist lets microcontrollers learn together without a server by sharing only the gist of their models: importance-based segmentation, probabilistic sharing, and success-based aggregation. ACM MobiCom 2026.">
+<meta name="theme-color" content="#000000">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="tinyGist - Adaptive Segmented Decentralized Federated Learning on Tiny Devices">
+<meta property="og:description" content="Microcontrollers that learn together by sharing only the gist of their models. ACM MobiCom 2026.">
+<meta property="og:image" content="https://tinygist.github.io/assets/img/og.jpg">
+<meta property="og:url" content="https://tinygist.github.io/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="nav-logo" href="#top" aria-label="tinyGist home"><img src="assets/img/tinygist-logo-dark-purple.svg" alt="tinyGist"></a>
+  <div class="nav-links">
+    <a href="#video">Video</a>
+    <a href="#lab">Gist Lab</a>
+    <a href="#method">Method</a>
+    <a href="#results">Results</a>
+    <a href="#artifact">Artifact</a>
+    <a href="#cite">Cite</a>
+    <a class="nav-paper" href="https://doi.org/10.1145/3795866.3844490">Paper</a>
+    <a class="nav-gh" href="https://github.com/TinyGist/tinyGist" aria-label="Code on GitHub">
+      <svg viewBox="0 0 16 16" width="20" height="20" aria-hidden="true"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+    </a>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<header class="hero" id="top">
+  <canvas id="field" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <p class="eyebrow"><span class="dot"></span>ACM MobiCom 2026</p>
+    <img class="hero-logo" src="assets/img/tinygist-logo-dark-purple.svg" alt="tinyGist">
+    <h1>Adaptive Segmented Decentralized <br>Federated Learning on Tiny Devices</h1>
+    <p class="authors">
+      Navidreza Asadi<sup>1</sup>, Lars Wulfert<sup>2</sup>, Chi Xia<sup>1</sup>,
+      Halil Ibrahim Bengü<sup>1</sup>, Hendrik Wöhrle<sup>2,3</sup>, Wolfgang Kellerer<sup>1</sup>
+    </p>
+    <p class="affil">
+      <span><sup>1</sup>Technical University of Munich</span>
+      <span><sup>2</sup>Fraunhofer IMS</span>
+      <span><sup>3</sup>University of Duisburg-Essen</span>
+    </p>
+    <div class="cta">
+      <a class="btn primary" href="https://doi.org/10.1145/3795866.3844490">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M8 13h8M8 17h5"/></svg>Paper</a>
+      <a class="btn" href="https://github.com/TinyGist/tinyGist">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>Code</a>
+      <a class="btn" href="#video">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4l13 8-13 8z"/></svg>Teaser</a>
+      <a class="btn" href="#cite">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 7h5v5c0 3-2 5-5 5M14 7h5v5c0 3-2 5-5 5"/></svg>Cite</a>
+    </div>
+    <ul class="badges" aria-label="ACM artifact badges">
+      <li class="blue">Artifacts Available</li>
+      <li class="green">Artifacts Evaluated</li>
+      <li class="yellow">Results Reproduced</li>
+    </ul>
+  </div>
+  <p class="hero-hint">Each chip is a microcontroller; each flying square, a gist. <span>Click anywhere to start a round.</span></p>
+</header>
+
+<!-- ============================== VIDEO ============================== -->
+<section class="section" id="video">
+  <div class="wrap">
+    <p class="kicker">In 90 Seconds</p>
+    <h2>The Teaser</h2>
+    <div class="video-frame">
+      <video controls preload="metadata" poster="assets/video/poster.jpg" playsinline>
+        <source src="assets/video/tinygist-teaser.mp4" type="video/mp4">
+        <track kind="subtitles" src="assets/video/tinygist-teaser.en.vtt" srclang="en" label="English">
+        Your browser does not play MP4 video. <a href="assets/video/tinygist-teaser.mp4">Download the teaser</a>.
+      </video>
+    </div>
+    <p class="video-note">Subtitles are available from the player's CC menu.</p>
+  </div>
+</section>
+
+<!-- ============================== IDEA ============================== -->
+<section class="section idea" id="idea">
+  <div class="wrap narrow">
+    <p class="kicker">The Idea</p>
+    <h2 class="statement">Don't share the model.<br><em>Share the gist.</em></h2>
+    <p class="lead">
+      Tiny devices sit on data that is private and keeps changing, so it should stay where it is. Decentralized
+      federated learning lets them train together with no server in the loop, yet trading the whole model with
+      every neighbor, round after round, overwhelms a few hundred kilobytes of memory and a slow, lossy radio.
+      tinyGist sends only the part that matters most.
+    </p>
+    <details class="abstract">
+      <summary>Abstract</summary>
+      <p>
+        We present tinyGist, an efficient decentralized federated learning framework designed for tiny
+        microcontrollers. Instead of treating all model parameters equally, each device exchanges a portion of
+        them, effectively sharing a "gist" of the information. Our major contributions are: (1) segment model
+        parameters based on their importance, while identifying the most impactful updates, (2) share the gist
+        probabilistically, maintaining model diversity while ensuring fast knowledge propagation across peers,
+        (3) update models based on the information merit received from other neighbors, and (4) adaptive
+        learning. We implement tinyGist across various simulation experiments, large-scale realistic emulation
+        with hundreds of devices, and real deployment on homogeneous and heterogeneous physical microcontroller
+        clusters. Evaluated on eight machine learning models and 15 tasks, tinyGist outperforms existing
+        baselines in convergence speed by 1.35-3.3× and accuracy by up to 17%, while reducing communication
+        overhead by ≈3× compared to the full-model baselines. We further validate our lightweight importance
+        proxy against gradient-, Fisher-, and Hessian-based measures, and characterize how tinyGist interacts
+        with differential privacy and secure aggregation.
+      </p>
+    </details>
+  </div>
+</section>
+
+<!-- ============================== LAB ============================== -->
+<section class="section" id="lab">
+  <div class="wrap">
+    <p class="kicker">Gist Lab</p>
+    <h2>Play with a Gist</h2>
+    <p class="sub">One tinyGist round on a toy model with 160 parameters: split the model by importance, send a few segments to random peers, and watch the peers aggregate once enough gists have arrived.</p>
+
+    <div class="lab">
+      <div class="lab-stage">
+        <ol class="lab-steps" aria-hidden="true">
+          <li><b>1</b> Split by magnitude</li>
+          <li><b>2</b> Pick a segment by importance</li>
+          <li><b>3</b> Send it to a random peer</li>
+          <li><b>4</b> Peer aggregates at 5</li>
+        </ol>
+        <div class="lab-flow">
+          <div class="lab-model">
+            <span class="lab-label">Local Model</span>
+            <div class="grid" id="labGrid" role="img" aria-label="Model parameters colored by importance segment"></div>
+          </div>
+          <div class="lab-link" aria-hidden="true"><span></span></div>
+          <div class="lab-peers" id="labPeers" aria-live="polite"></div>
+        </div>
+      </div>
+
+      <div class="lab-panel">
+        <label class="ctl">
+          <span>Segments <output id="segOut">3</output></span>
+          <input type="range" id="segSlider" min="2" max="6" step="1" value="3">
+        </label>
+        <div class="bars" id="labBars" aria-live="polite"></div>
+        <div class="lab-buttons">
+          <button class="btn primary" id="roundBtn">Run a Round</button>
+          <button class="btn" id="sendBtn">Send One Gist</button>
+          <button class="btn" id="autoBtn" aria-pressed="false">Auto</button>
+          <button class="btn ghost" id="trainBtn" title="Perturb the weights as a training step would">Train a Step</button>
+        </div>
+        <dl class="lab-stats">
+          <div><dt>Last Payload</dt><dd id="statPayload">-</dd></div>
+          <div><dt>vs. Full Model</dt><dd id="statSaving">-</dd></div>
+        </dl>
+        <p class="lab-foot">As in our firmware and simulator: each round a device splits its model into equally sized segments by parameter magnitude, then sends 6 of them, each picked with probability proportional to its mean magnitude and sent to a randomly chosen peer. A peer aggregates once 5 segments have arrived, weighting each by its sender's accuracy. In a real network, gists reach a peer from many devices. Payload: 32-bit values, a one-bit-per-parameter position bitmap, and the sender's accuracy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== METHOD ============================== -->
+<section class="section" id="method">
+  <div class="wrap">
+    <p class="kicker">How It Works</p>
+    <h2>Three Pillars</h2>
+    <div class="pillars">
+      <div class="temple" id="temple">
+        <img src="assets/img/temple-dark.svg" alt="A temple whose three columns are the three components of tinyGist">
+        <span class="roof">tinyGist</span>
+        <button class="col-hit p0" data-p="0" aria-label="Importance-based segmentation"></button>
+        <button class="col-hit p1" data-p="1" aria-label="Success-based aggregation"></button>
+        <button class="col-hit p2" data-p="2" aria-label="Probabilistic sharing"></button>
+      </div>
+      <div class="pillar-cards">
+        <article class="pcard blue" data-p="0">
+          <span class="num">1</span>
+          <h3>Importance-Based Segmentation</h3>
+          <p>Parameters are binned into segments by magnitude. The proxy needs no extra backward pass and no buffers, yet tracks gradient-, Fisher- and Hessian-based importance at ≥50,000× lower cost.</p>
+        </article>
+        <article class="pcard green" data-p="2">
+          <span class="num">2</span>
+          <h3>Probabilistic Sharing</h3>
+          <p>A device picks which segment to send with probability proportional to its importance. Impactful updates spread fast; the rest still circulate, so models stay diverse.</p>
+        </article>
+        <article class="pcard yellow" data-p="1">
+          <span class="num">3</span>
+          <h3>Success-Based Aggregation</h3>
+          <p>Receivers weight incoming segments by the sender's accuracy, so reliable peers count more, and adaptive learning rates (AdaStair, AdaLoss) keep training stable.</p>
+        </article>
+      </div>
+    </div>
+    <figure class="wide-fig">
+      <img src="assets/fig/segmentation-dark.svg" alt="Segment creation: parameters are compared with thresholds, placed into segments, and one segment is selected probabilistically and shared with a receiver device" loading="lazy">
+      <figcaption>Segment creation and exchange on a device.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================== RESULTS ============================== -->
+<section class="section" id="results">
+  <div class="wrap">
+    <p class="kicker">Results</p>
+    <h2>Faster, More Accurate, Lighter</h2>
+    <p class="sub">8 models, 15 tasks, from 5 to 200 devices, in simulation, emulation, and on real microcontroller clusters.</p>
+    <div class="stats">
+      <div class="stat blue">
+        <div class="v"><span data-count="1.35" data-dec="2">1.35</span>–<span data-count="3.3" data-dec="1">3.3</span>×</div>
+        <div class="k">Faster Convergence</div>
+      </div>
+      <div class="stat green">
+        <div class="v">Up to <span data-count="17" data-dec="0">17</span>%</div>
+        <div class="k">Higher Accuracy</div>
+      </div>
+      <div class="stat yellow">
+        <div class="v">≈<span data-count="3" data-dec="0">3</span>×</div>
+        <div class="k">Less Communication than Full-Model DFL</div>
+      </div>
+    </div>
+    <div class="figs">
+      <figure>
+        <img src="assets/fig/wallclock-dark.svg" alt="Box plot of wall-clock time to reach accuracy thresholds; tinyGist reaches each threshold fastest" loading="lazy">
+        <figcaption><b>Time to Accuracy</b> on a cluster of 10 real devices. Lower is better.</figcaption>
+      </figure>
+      <figure>
+        <div class="legend">
+          <span><i style="background:#78866b"></i>Centralized</span><span><i style="background:#1c39bb"></i>DFA</span>
+          <span><i style="background:#c03aae"></i>tinyGist</span><span><i style="background:#00a693"></i>SDFA</span>
+          <span><i style="background:#f38400"></i>SP</span>
+        </div>
+        <img src="assets/fig/mnv2-cifar10-dark.svg" alt="Accuracy over 200 rounds for MobileNetV2 on CIFAR-10; tinyGist tracks the centralized upper line and beats decentralized baselines" loading="lazy">
+        <figcaption><b>MobileNetV2 on CIFAR-10</b>, simulation, accuracy over rounds.</figcaption>
+      </figure>
+      <figure>
+        <img src="assets/fig/real-mnist-10-dark.svg" alt="Accuracy over rounds for MNIST on 10 real devices; tinyGist ends highest" loading="lazy">
+        <figcaption><b>MNIST on 10 Real Devices</b>, accuracy over rounds.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BUILT ============================== -->
+<section class="section" id="built">
+  <div class="wrap">
+    <p class="kicker">Built End to End</p>
+    <h2>From Simulation to Silicon</h2>
+    <div class="built">
+      <ol class="stages">
+        <li class="blue"><span class="ring">1</span><div><h3>Simulation</h3><p>PyTorch framework for fast iteration on ideas, topologies, and datasets.</p></div></li>
+        <li class="green"><span class="ring">2</span><div><h3>Emulation</h3><p>QEMU-based ESP32 devices in Docker, hundreds of them running the real compiled firmware.</p></div></li>
+        <li class="yellow"><span class="ring">3</span><div><h3>Real Hardware</h3><p>20 boards over 2.4 GHz Wi-Fi: ESP32-S3 (240 MHz), M5Stack Core2 (160 MHz), and ESP32-WROVER (80 MHz), training on-device with AIfES.</p></div></li>
+      </ol>
+      <figure class="photo">
+        <img src="assets/img/setup.jpg" alt="Measurement setup: PC, Wi-Fi router, USB hub, M5Stack Core2, ESP32-WROVER and ESP32-S3 boards" loading="lazy">
+        <figcaption>Part of the measurement setup.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== ARTIFACT ============================== -->
+<section class="section" id="artifact">
+  <div class="wrap narrow">
+    <p class="kicker">Reproducible by Design</p>
+    <h2>Run It Yourself</h2>
+    <p class="lead">The artifact earned all three ACM badges. Simulation, ESP32/QEMU emulation, and physical-device workflows come in one container image.</p>
+    <ul class="badges big">
+      <li class="blue">Artifacts Available</li>
+      <li class="green">Artifacts Evaluated</li>
+      <li class="yellow">Results Reproduced</li>
+    </ul>
+    <div class="code">
+      <pre id="dockerCmd"><code>docker pull ghcr.io/tinygist/tinygist-artifact-mobicom26:latest
+docker run -it --name tinygist ghcr.io/tinygist/tinygist-artifact-mobicom26:latest</code></pre>
+      <button class="copy" data-copy="dockerCmd">Copy</button>
+    </div>
+    <p class="more"><a href="https://github.com/TinyGist/tinyGist#readme">Full replication guide on GitHub →</a></p>
+  </div>
+</section>
+
+<!-- ============================== CITE ============================== -->
+<section class="section" id="cite">
+  <div class="wrap narrow">
+    <p class="kicker">Citation</p>
+    <h2>Cite tinyGist</h2>
+    <div class="tabs" role="tablist">
+      <button role="tab" aria-selected="true" data-tab="bib">BibTeX</button>
+      <button role="tab" aria-selected="false" data-tab="acm">ACM Reference</button>
+    </div>
+    <div class="code" data-panel="bib">
+      <pre id="bibtex"><code>@inproceedings{asadi2026tinygist,
+  author    = {Asadi, Navidreza and Wulfert, Lars and Xia, Chi and Beng{\"u}, Halil Ibrahim and W{\"o}hrle, Hendrik and Kellerer, Wolfgang},
+  title     = {Adaptive Segmented Decentralized Federated Learning on Tiny Devices},
+  booktitle = {Proceedings of the 32nd Annual International Conference on Mobile Computing and Networking},
+  series    = {MobiCom '26},
+  year      = {2026},
+  month     = oct,
+  location  = {Austin, TX, USA},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  isbn      = {9798400725050},
+  doi       = {10.1145/3795866.3844490}
+}</code></pre>
+      <button class="copy" data-copy="bibtex">Copy</button>
+    </div>
+    <div class="code" data-panel="acm" hidden>
+      <pre id="acmref" class="wrap-text"><code>Navidreza Asadi, Lars Wulfert, Chi Xia, Halil Ibrahim Bengü, Hendrik Wöhrle, and Wolfgang Kellerer. 2026. Adaptive Segmented Decentralized Federated Learning on Tiny Devices. In The 32nd Annual International Conference on Mobile Computing and Networking (MobiCom '26), October 26–30, 2026, Austin, TX, USA. ACM, New York, NY, USA. https://doi.org/10.1145/3795866.3844490</code></pre>
+      <button class="copy" data-copy="acmref">Copy</button>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="strip" aria-hidden="true"></div>
+  <div class="wrap foot">
+    <img src="assets/img/tinygist-logo-dark-purple.svg" alt="tinyGist" class="foot-logo">
+    <p>Technical University of Munich</p>
+    <p class="small"><a href="https://github.com/TinyGist">github.com/TinyGist</a> | Site code under the MIT License.</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

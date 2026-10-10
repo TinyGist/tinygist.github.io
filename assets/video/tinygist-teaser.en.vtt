@@ -1,0 +1,78 @@
+WEBVTT
+
+1
+00:00:00.300 --> 00:00:03.372
+Billions of tiny devices sense the world around us.
+
+2
+00:00:03.372 --> 00:00:07.751
+Could they learn together, without a server and without sharing raw data?
+
+3
+00:00:07.751 --> 00:00:11.207
+Decentralized federated learning promises that.
+
+4
+00:00:11.207 --> 00:00:14.515
+But with kilobytes of memory and slow radios,
+
+5
+00:00:14.515 --> 00:00:18.538
+swapping full models every round is barely feasible.
+
+6
+00:00:18.538 --> 00:00:25.065
+And existing fixes split models at random, as if every parameter mattered equally.
+
+7
+00:00:25.065 --> 00:00:30.859
+Our answer is tinyGist: each device shares just the gist of its model.
+
+8
+00:00:30.859 --> 00:00:34.622
+First, it groups parameters into segments by magnitude,
+
+9
+00:00:34.622 --> 00:00:37.628
+which is a nearly free importance signal.
+
+10
+00:00:37.628 --> 00:00:43.228
+Second, important segments are shared more often, and the rest now and then,
+
+11
+00:00:43.228 --> 00:00:45.123
+keeping models diverse.
+
+12
+00:00:45.123 --> 00:00:51.691
+Third, it weights each update by the sender's accuracy, and adapts the learning rate.
+
+13
+00:00:51.691 --> 00:00:56.987
+We built it end to end: in simulation, in emulation with hundreds of devices,
+
+14
+00:00:56.987 --> 00:00:59.932
+and on real microcontroller clusters.
+
+15
+00:00:59.932 --> 00:01:06.592
+Across eight models and fifteen tasks, tinyGist converges up to 3.3 times faster,
+
+16
+00:01:06.592 --> 00:01:12.055
+gains up to 17% accuracy, and sends about three times less data.
+
+17
+00:01:12.055 --> 00:01:16.857
+And it stays ahead, in simulation and on real devices.
+
+18
+00:01:16.857 --> 00:01:22.796
+We also validate our importance proxy, and analyze differential privacy and secure aggregation.
+
+19
+00:01:22.796 --> 00:01:28.603
+I'm Navidreza Asadi and I invite you to read the paper and try tinyGist yourself.
+
